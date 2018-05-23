@@ -1,0 +1,27 @@
+'''
+题目描述
+输入一棵二叉树，判断该二叉树是否是平衡二叉树。
+'''
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def IsBalanced_Solution(self, pRoot):
+        # write code here
+        if pRoot == None:
+            return True
+        pLeft = self.DepthTree(pRoot.left)
+        pRight = self.DepthTree(pRoot.right)
+        if pLeft - pRight > 1 or pRight - pLeft > 1:
+            return False
+        else:
+            return self.IsBalanced_Solution(pRoot.left) and self.IsBalanced_Solution(pRoot.right)
+    def DepthTree(self,pRoot):
+        if pRoot == None:
+            return 0
+        pLeft = self.DepthTree(pRoot.left)
+        pRight = self.DepthTree(pRoot.right)
+        return max(pLeft + 1,pRight + 1)
